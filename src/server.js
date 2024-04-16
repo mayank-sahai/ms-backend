@@ -5,8 +5,9 @@ import cors from 'cors'
 import morgan from 'morgan'
 import config from './config/config.js'
 import logger from './config/logger.js'
+import v1Router from './routes/v1/index.js'
+
 const app = express()
-const port = 3000
 
 // set security headers
 app.use(helmet())
@@ -29,11 +30,13 @@ if (config.env === 'production') {
     app.use(morgan('dev'))
 }
 
-app.get('/ping', (req, res) => {
-    logger.info('ping requested')
-    res.send('Hello World!')
-    logger.info('ping exiting')
-})
+// limit repeated failed requests to auth endpoints
+// if (config.env === 'production') {
+//     app.use('/v1/auth', authLimiter);
+//   }
+
+// v1 api routes
+app.use('/v1', v1Router)
 
 app.listen(config.port, () => {
     logger.info(`Backend app listening on port ${config.port}`)
