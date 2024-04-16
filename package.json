@@ -1,48 +1,56 @@
 {
-  "name": "ms-backend",
-  "version": "1.0.0",
-  "description": "backend-boilerplate-js",
-  "main": "server.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "npx eslint",
-    "check": "npx prettier . --check",
-    "prepare": "husky"
-  },
-  "author": "Mayank Sahai",
-  "dependencies": {
-    "compression": "1.7.4",
-    "cors": "2.8.5",
-    "dayjs": "1.11.10",
-    "dotenv": "16.4.5",
-    "express": "4.19.2",
-    "helmet": "7.1.0",
-    "http-status": "1.7.4",
-    "morgan": "1.10.0",
-    "ratelimiter": "3.4.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.0.0",
-    "eslint": "^9.0.0",
-    "eslint-config-prettier": "^9.1.0",
-    "globals": "^15.0.0",
-    "husky": "^9.0.11",
-    "jest": "^29.7.0",
-    "lint-staged": "^15.2.2",
-    "nodemon": "3.1.0",
-    "prettier": "3.2.5"
-  },
-  "husky": {
-    "hooks": {
-    "pre-commit": "lint-staged"
+    "name": "ms-backend",
+    "version": "1.0.0",
+    "description": "backend-boilerplate-js",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "start": "nodemon ./src/server.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "npx eslint",
+        "check": "npx prettier . --check",
+        "prepare": "husky"
+    },
+    "author": "Mayank Sahai",
+    "dependencies": {
+        "compression": "1.7.4",
+        "cors": "2.8.5",
+        "dayjs": "1.11.10",
+        "dotenv": "16.4.5",
+        "express": "4.19.2",
+        "helmet": "7.1.0",
+        "http-status": "1.7.4",
+        "joi": "17.12.3",
+        "morgan": "1.10.0",
+        "ratelimiter": "3.4.1",
+        "winston": "3.13.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.0.0",
+        "eslint": "^9.0.0",
+        "globals": "^15.0.0",
+        "husky": "9.0.11",
+        "jest": "29.7.0",
+        "lint-staged": "15.2.2",
+        "nodemon": "3.1.0",
+        "prettier": "3.2.5"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.js": [
+            "eslint — fix",
+            "prettier — write",
+            "git add"
+        ]
+    },
+    "nodemonConfig": {
+        "ignore": [
+            "**/test/**"
+        ],
+        "delay": 2500
     }
-  },
-  "lint-staged": {
-    "*.js": [
-    "eslint — fix",
-    "prettier — write",
-    "git add"
-  ]
-  }
 }
