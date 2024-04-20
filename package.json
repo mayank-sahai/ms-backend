@@ -1,6 +1,6 @@
 {
     "name": "ms-backend",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "backend-boilerplate-js",
     "main": "server.js",
     "type": "module",
