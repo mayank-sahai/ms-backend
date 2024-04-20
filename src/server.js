@@ -3,8 +3,11 @@ import helmet from 'helmet'
 import compression from 'compression'
 import cors from 'cors'
 import morgan from 'morgan'
+import passport from 'passport'
+import { defaultlimiter } from './middlewares/ratelimitter.js'
 import config from './config/config.js'
 import logger from './config/logger.js'
+import { jwtStrategy } from './config/passport.js'
 import v1Router from './routes/v1/index.js'
 
 const app = express()
@@ -30,10 +33,15 @@ if (config.env === 'production') {
     app.use(morgan('dev'))
 }
 
-// limit repeated failed requests to auth endpoints
+// jwt authentication
+app.use(passport.initialize());
+passport.use('jwt', jwtStrategy);
+
+// //limit repeated failed requests to auth endpoints
 // if (config.env === 'production') {
 //     app.use('/v1/auth', authLimiter);
 //   }
+app.use(defaultlimiter);
 
 // v1 api routes
 app.use('/v1', v1Router)

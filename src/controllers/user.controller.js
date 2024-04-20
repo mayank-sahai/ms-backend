@@ -11,7 +11,7 @@ const getAllUsers = async (req, res) => {
             data: users,
         })
     } catch (err) {
-        logger.error('Error occurred while fetching users', error)
+        logger.error('Error occurred while fetching users', err)
         res.status(500).send({
             status: 'error',
             message: 'An error occurred while fetching users',
