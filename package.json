@@ -28,6 +28,7 @@
         "morgan": "1.10.0",
         "passport": "0.7.0",
         "passport-jwt": "4.0.1",
+        "rimraf": "5.0.5",
         "winston": "3.13.0"
     },
     "devDependencies": {
@@ -40,6 +41,9 @@
         "nodemon": "3.1.0",
         "prettier": "3.2.5",
         "prisma": "5.12.1"
+    },
+    "bin": {
+        "create-ms-backend": "./bin/generate-app.js"
     },
     "husky": {
         "hooks": {
